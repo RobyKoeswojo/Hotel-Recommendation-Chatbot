@@ -1,1 +1,1 @@
-from .prepare_data import CSVData
+from .prepare_docs import CSVData

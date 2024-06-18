@@ -3,7 +3,14 @@ from abc import abstractmethod
 
 
 class BasePrompt:
+    """
+    The base class for the prompt template.
+    """
+
     def __init__(self):
+        """
+        Initialize the prompt class.
+        """
         self.head_template = """
         You are an AI customer service that gives recommendation about hotels to users.
         Answer the following questions as best you can.
@@ -16,16 +23,35 @@ class BasePrompt:
 
         self.final_template = ""
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """
+        Print out the final template.
+        """
         return self.final_template
 
     @abstractmethod
-    def get(self):
+    def get(self) -> PromptTemplate:
+        """
+        Retrieve the prompt template.
+
+        Returns
+        -------
+        PromptTemplate
+            The prompt template.
+        """
         pass
 
 
 class ReactPrompt(BasePrompt):
-    def __init__(self, conversation_history):
+    def __init__(self, conversation_history: bool):
+        """
+        Initialize the prompt template with ReAct style.
+
+        Parameters
+        ----------
+        conversation_history: bool
+            If True, the prompt template will add chat history as context.
+        """
         super().__init__()
         self.conversation_history = conversation_history
         self.body_template = """
@@ -54,18 +80,16 @@ class ReactPrompt(BasePrompt):
         """
 
         if self.conversation_history:
-            chat_history_template = """
-            Previous conversation history:
-            {chat_history}
-            
+            chat_history_template = """Previous conversation history:
+        {chat_history}
             """
             self.final_template = self.head_template + self.body_template + \
-                            chat_history_template + self.end_template
+                                  chat_history_template + self.end_template
         else:
             self.final_template = self.head_template + self.body_template + \
-                            self.end_template
+                                  self.end_template
 
-    def get(self):
+    def get(self) -> PromptTemplate:
         input_variables = ['agent_scratchpad',
                            'input',
                            'chat_history',
@@ -81,6 +105,9 @@ class ReactPrompt(BasePrompt):
 
 class RAGPrompt(BasePrompt):
     def __init__(self):
+        """
+        Initialize the prompt for RAG only purpose.
+        """
         super().__init__()
         self.body_template = """
         Use the following pieces of retrieved context to answer the question.
@@ -93,7 +120,7 @@ class RAGPrompt(BasePrompt):
         """
         self.final_template = self.head_template + self.body_template
 
-    def get(self):
+    def get(self) -> PromptTemplate:
         input_variables = ['input', 'context']
         return PromptTemplate(
             input_variables=input_variables,
