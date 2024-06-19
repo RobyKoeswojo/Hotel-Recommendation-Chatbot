@@ -35,10 +35,12 @@ class Embeddings:
             If the desired embedding model has not been implemented.
         """
         if embedding_name == EmbeddingType.SENTENCE_TRANSFORMER:
+            print(f"[INFO] Using {EmbeddingType.SENTENCE_TRANSFORMER}")
             return HuggingFaceEmbeddings(
                 model_name=REGISTRY_EMBEDDING[embedding_name]
             )
         elif embedding_name == EmbeddingType.OPENAI_EMBEDDING_SMALL:
+            print(f"[INFO] Using {EmbeddingType.OPENAI_EMBEDDING_SMALL}")
             return OpenAIEmbeddings(
                 model=REGISTRY_EMBEDDING[embedding_name])
         else:

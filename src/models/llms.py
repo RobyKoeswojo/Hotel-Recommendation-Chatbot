@@ -35,12 +35,13 @@ class Models:
             If the desired LLM has not been implemented.
         """
         if model_name == ModelType.CHATGPTSTANDARD:
-            print(f"Using {ModelType.CHATGPTSTANDARD}")
+            print(f"[INFO] Using {ModelType.CHATGPTSTANDARD}")
             return ChatOpenAI(
                 model_name=REGISTRY_MODEL[model_name],
                 temperature=0
             )
         elif model_name == ModelType.PHITHREE4k:
+            print(f"[INFO] Using {ModelType.PHITHREE4k}")
             endpoint = f"https://api-inference.huggingface.co/models/" \
                        f"{REGISTRY_MODEL[model_name]}"
             return HuggingFaceEndpoint(
