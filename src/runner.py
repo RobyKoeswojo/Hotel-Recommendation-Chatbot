@@ -34,7 +34,7 @@ def run(model_name="chat-gpt-3.5", embedding_name="sentence-transformer",
     if ToolType.RETRIEVER in tools_list:
         print("Adding retriever tool.")
         vector_db = ChromaDB.get(embedding_model, country)
-        retriever = vector_db.as_retriever(k=3)
+        retriever = vector_db.as_retriever(search_kwargs={'k': 3})
         tools.append(RetrieverTool.get(retriever))
     if ToolType.ONLINE_SEARCH in tools_list:
         print("Adding online search tool")
@@ -45,7 +45,7 @@ def run(model_name="chat-gpt-3.5", embedding_name="sentence-transformer",
         prompt = ReactPrompt(
             conversation_history=conversation_history).get()
     agent = Agents.get(llm, tools, prompt,
-                       react, conversation_history, verbose)
+                       react, verbose)
     if conversation_history:
         store = {}
 
