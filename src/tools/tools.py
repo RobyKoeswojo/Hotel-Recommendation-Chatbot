@@ -37,6 +37,7 @@ class RetrieverTool(Tool):
         retriever: VectorStoreRetriever
             The retriever of the vector store.
         """
+        print(f"[INFO] Using Retriever Tool")
         return create_retriever_tool(
             retriever=retriever,
             name="retriever-tool",
@@ -50,6 +51,7 @@ class OnlineSearchTool(Tool):
     """
     @classmethod
     def get(cls) -> Tool:
+        print(f"[INFO] Using Online Search Tool")
         search = SerpAPIWrapper()
         return Tool(
             name="online-search-tool",

@@ -152,6 +152,7 @@ class FaissDB(VectorDatabase):
                    country):
         pass
 
+    @classmethod
     def _load_db(cls,
                  embedding_model: Union[HuggingFaceEmbeddings,
                                         OpenAIEmbeddings]):

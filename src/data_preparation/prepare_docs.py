@@ -84,7 +84,7 @@ class CSVData(Data):
         if os.path.isfile(data_path):
             self._check_processed_data()
         else:
-            print("Creating processed data.")
+            print("[INFO] Creating processed data.")
             if not os.path.exists(RAW_DATA_DIR):
                 os.mkdir(RAW_DATA_DIR)
             if not os.path.exists(PROCESSED_DATA_DIR):
@@ -170,7 +170,7 @@ class CSVData(Data):
         data_path = os.path.join(
             RAW_DATA_DIR, self.raw_data_name)
         if os.path.isfile(data_path):
-            print(f"Raw data exists: {data_path}.")
+            print(f"[INFO] Raw data exists: {data_path}.")
         else:
             exc_msg = f"""
             Raw data does not exist. 
@@ -184,8 +184,9 @@ class CSVData(Data):
             PROCESSED_DATA_DIR, self.processed_data_name)
         self.data = pd.read_csv(data_path)
         if isinstance(self.data, pd.DataFrame):
-            print(f"Processed data already exists at {data_path}.")
-        raise TypeError("Processed data is not a CSV file.")
+            print(f"[INFO] Processed data already exists at {data_path}.")
+        else:
+            raise TypeError("Processed data is not a CSV file.")
 
     @staticmethod
     def _clean_tag(tag) -> str:
