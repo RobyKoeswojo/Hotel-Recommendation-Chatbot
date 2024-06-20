@@ -11,7 +11,6 @@ class TestEmbeddings(unittest.TestCase):
         embedding_model = Embeddings.get(EmbeddingType.SENTENCE_TRANSFORMER)
         self.assertIsNotNone(embedding_model, ValueError)
         print(embedding_model)
-        # TODO: add exception check
 
 
 if __name__ == "__main__":

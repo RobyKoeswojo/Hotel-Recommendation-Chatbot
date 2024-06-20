@@ -15,7 +15,6 @@ class TestCSVData(unittest.TestCase):
         self.assertTrue(os.path.isfile(os.path.join(
             processed_data_dir, f"{country}_processed_df.csv"
         )))
-        # TODO: add exception check
 
 
 if __name__ == "__main__":
