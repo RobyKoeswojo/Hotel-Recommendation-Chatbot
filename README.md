@@ -100,9 +100,9 @@ Three scenarios experimented:
 
 Five questions are asked, and the answer from each scenario is as following:
 
-| ![Answers by chatbot](notebook/images/chat_results.PNG) |
-|:-------------------------------------------------------:| 
-|              The answers from the chatbot               |
+| ![Answers by chatbot](notebook/images/chat_results.png) |
+|:-----------------------------------------------------:| 
+|             The answers from the chatbot              |
 
 **Key Findings**
 1. The ChatGPT 3.5 + RAG is able to provide answers based on the retrieved 
