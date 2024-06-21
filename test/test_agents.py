@@ -23,7 +23,7 @@ class TestAgents(unittest.TestCase):
                            react=True, verbose=False)
 
         self.assertIsNotNone(agent, ValueError)
-        # TODO: add exception check
+
 
 if __name__ == "__main__":
     unittest.main()

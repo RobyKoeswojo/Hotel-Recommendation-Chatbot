@@ -11,7 +11,6 @@ class TestModels(unittest.TestCase):
         llm = Models.get(ModelType.CHATGPTSTANDARD)
         self.assertIsNotNone(llm, ValueError)
         print(llm)
-        # TODO: add exception check
 
 
 if __name__ == "__main__":
